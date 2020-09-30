@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소수판별프로그램</title>
+</head>
+<body>
+    <h1>소수 판별 프로그램</h1>
+    <div id ="result"></div>
+    <script>
+
+        var numbers = {};
+        numbers.allNumber = []; // 2~10000 사이의 모든 값 
+        numbers.primeNumber = [];
+
+
+        numbers.isPrime = function(number) {
+            for(var i = 2; i < number; i++){
+                if(number % i == 0){
+                    return false;
+                }
+            }
+                return true;
+        };
+
+
+        numbers.allNumberadd = function(number) {
+            for(var i = 2; i<=number; i++){
+                this.allNumber.push(i);
+            }
+        };
+
+
+        numbers.calPrime = function() {
+            for(var i = 0; i < this.allNumber.length; i++){
+                var n = this.allNumber[i];
+                if(this.isPrime(n)){
+                    this.primeNumber.push(n);
+                }
+            }
+        };
+
+
+        numbers.getAllPrimeNumbers = function() {   // prime 배열 공개
+            var ret = "";
+            ret += "<h2> 전체 소수의 갯수:" + this.primeNumber.length + "</h2>\n";
+            for (var i = 0; i < this.primeNumber.length; i++) {
+                ret += (i+1) + "번째 소수: " + this.primeNumber[i] + "<br>\n";
+            }
+            return ret;
+        };
+
+
+
+        numbers.allNumberadd(10000);
+        numbers.calPrime();
+        document.getElementById('result').innerHTML = numbers.getAllPrimeNumbers();
+        
+
+    </script>
+</body>
+</html>
